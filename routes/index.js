@@ -16,4 +16,21 @@ module.exports = (app) => {
     tokenValidation,
     categoryController.createCategory,
   )
+
+  app.get(
+    '/api/catagory/findAll',
+    tokenValidation,
+    categoryController.findAllCategories,
+  ) // find all Categ
+  app.get(
+    '/api/catagory/findCatagoryById/:id',
+    tokenValidation,
+    categoryController.findCategoryById,
+  ) //find Categ by ID
+
+  // app.put(
+  //   '/api/catagory/updateCatagory',
+  //   tokenValidation,
+  //   categoryController.updateCategory,
+  // ) // update Categ
 }
