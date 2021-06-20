@@ -30,7 +30,7 @@ module.exports = {
         },
       })
       if (categCollection) {
-        res.status(200).send({ categCollection: categCollection })
+        res.status(200).send({ categCollection })
       } else {
         message = 'No Record Found'
         res.status(400).send({ message: message })

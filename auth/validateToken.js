@@ -4,11 +4,13 @@ module.exports = {
   async tokenValidation(req, res, next) {
     let token = req.get('authorization')
     if (token) {
-      token = token.slice(7)
-      jwt.verify(token, 'qwe1234', (err, decoded) => {
+      token = token.split(' ')
+
+      jwt.verify(token[1], 'qwe1234', (err, decoded) => {
         if (err) {
           return res.status(401).send({
             message: 'Invalid Token',
+            err: err,
           })
         } else {
           req.decoded = decoded

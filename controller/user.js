@@ -46,10 +46,16 @@ module.exports = {
         if (userCollection) {
             if (userCollection.password === req.body.password) {
                 const jsontoken = sign({ userCollection: userCollection }, "qwe1234", {
-                    expiresIn: "1h"
+                    expiresIn: "24h"
                 });
+                let userInfo = {
+                  firstName: userCollection.firstName,
+                  lastName: userCollection.lastName,
+                  email: userCollection.email
+                }
                 res.status(200).send({
-                    token: jsontoken
+                    token: jsontoken,
+                    userInfo: userInfo
                 })
             } else {
                 message = "Please Enter Valid Password"
