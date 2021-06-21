@@ -60,34 +60,34 @@ module.exports = {
     }
   },
 
-  // update Category
-  // async updateCategory(req, res) {
-  //   try {
-  //     const categCollection = await Category.findOne({
-  //       where: {
-  //         userId: userId,
-  //         id: req.body.id,
-  //       },
-  //     })
+  //update Category
+  async updateCategory(req, res) {
+    try {
+      const categCollection = await Category.findOne({
+        where: {
+          userId: req.payload,
+          id: req.body.id,
+        },
+      })
 
-  //     if (categCollection) {
-  //       const updatedCollection = await categCollection.update({
-  //         name: req.body.name,
-  //         description: req.body.description,
-  //         userId: userId,
-  //       })
-  //       if (updatedCollection) {
-  //         res.status(200).send({ updatedCollection: updatedCollection })
-  //       } else {
-  //         message = "Can't Update Record"
-  //         res.status(400).send({ message: message })
-  //       }
-  //     } else {
-  //       message = 'Record Not Found'
-  //       res.status(400).send({ message: message })
-  //     }
-  //   } catch (error) {
-  //     res.status(404).send(error)
-  //   }
-  // },
+      if (categCollection) {
+        const updatedCollection = await categCollection.update({
+          name: req.body.name,
+          description: req.body.description,
+          userId: req.payload,
+        })
+        if (updatedCollection) {
+          res.status(200).send({ updatedCollection: updatedCollection })
+        } else {
+          message = "Can't Update Record"
+          res.status(400).send({ message: message })
+        }
+      } else {
+        message = 'Record Not Found'
+        res.status(400).send({ message: message })
+      }
+    } catch (error) {
+      res.status(404).send(error)
+    }
+  },
 }

@@ -28,9 +28,9 @@ module.exports = (app) => {
     categoryController.findCategoryById,
   ) //find Categ by ID
 
-  // app.put(
-  //   '/api/catagory/updateCatagory',
-  //   tokenValidation,
-  //   categoryController.updateCategory,
-  // ) // update Categ
+  app.put(
+    '/api/catagory/updateCatagory',
+    tokenValidation,
+    categoryController.updateCategory,
+  ) // update Categ
 }
