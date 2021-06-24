@@ -1,6 +1,7 @@
 const userController = require('../controller/user')
 const { tokenValidation } = require('../auth/validateToken')
 const categoryController = require('../controller/category')
+const productController = require('../controller/product')
 module.exports = (app) => {
   app.get('/api', (req, res) => {
     res.status(200).send({
@@ -33,4 +34,17 @@ module.exports = (app) => {
     tokenValidation,
     categoryController.updateCategory,
   ) // update Categ
+
+
+  // create Prod
+  app.post(
+    '/api/product/create',
+    tokenValidation,
+    productController.createProduct,
+  )
+  app.get(
+    '/api/product/findAll',
+    tokenValidation,
+    productController.findAllProducts,
+  ) // find all Products
 }
