@@ -39,6 +39,13 @@ module.exports = function (sequelize, DataTypes) {
       },
       as: 'category',
     })
+    User.hasMany(models.Customers, {
+      foreignKey: {
+        name: 'userId',
+        allowNull: false,
+      },
+      as: 'userId',
+    })
   }
 
   return User

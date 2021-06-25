@@ -2,6 +2,7 @@ const userController = require('../controller/user')
 const { tokenValidation } = require('../auth/validateToken')
 const categoryController = require('../controller/category')
 const productController = require('../controller/product')
+const customerController = require('../controller/customer')
 module.exports = (app) => {
   app.get('/api', (req, res) => {
     res.status(200).send({
@@ -47,4 +48,31 @@ module.exports = (app) => {
     tokenValidation,
     productController.findAllProducts,
   ) // find all Products
+
+  app.get(
+    '/api/product/findProductById/:id',
+    tokenValidation,
+    productController.findProductById,
+  ) //find Product by ID
+
+  app.put(
+    '/api/product/updateProduct',
+    tokenValidation,
+    productController.updateProduct,
+  ) // update Product
+
+
+  ////////////////////////////////// Customer Routes /api/customer /////////////////////////////////////////////////
+// create Prod
+app.post(
+  '/api/customer/create',
+  tokenValidation,
+  customerController.createCustomer,
+)
+
+app.get(
+  '/api/customer/findAll',
+  tokenValidation,
+  customerController.findAllCustomers,
+) // find all Customers
 }
